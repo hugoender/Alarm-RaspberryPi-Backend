@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content = "initial-scale = 1, maximum-scale = 1, user-scalable = 0" /> 
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<!-- http://stuffandnonsense.co.uk/blog/about/home-screen-icons-and-startup-screens -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="images/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	
+	<title>Home Alarm</title>
+	
+	<script type="text/javascript" src="/webiopi.js"></script>
+	<script type="text/javascript">
+	//<link rel="stylesheet" type="text/css" href="homealarm_stylesheet.css">
+	
+	webiopi().ready(function() {
+		// specify GPIO numbers (Broadcom numbering)
+		var armGPIO= /*GPIO for arming*/; 
+		var disarmGPIO=/*GPIO for disarming*/;
+		
+		// initialize GPIOs 
+		webiopi().setFunction(armGPIO,"out");
+		webiopi().setFunction(disarmGPIO,"out");
+	
+		// create a button which outputs a bit sequence on GPIO with a 2000ms period to turn alarm ON
+		var buttonArm = webiopi().createSequenceButton("arm", "ARM", armGPIO, 2000, "10");
+		// create a button which outputs a bit sequence on GPIO with a 2000ms period to turn alarm OFF
+		var buttonDisarm = webiopi().createSequenceButton("disarm", "DISARM", disarmGPIO, 2000, "10");
+		
+		// append button to HTML element with ID="controls" using jQuery
+		$("#buttonArm").append(buttonArm);
+		$("#buttonDisarm").append(buttonDisarm);
+		
+		webiopi().refreshGPIO(false);
+	});
+	
+	</script>	
+	
+	<style type="text/css">
+		body {
+		background-color: #363636;
+		}
+	
+		#arm {
+		height: 130px;
+		width: 280px;
+		text-decoration:none; text-align:center; 
+		padding:0px 0px;
+		border:solid 2px #ff0000; 
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px; 
+		border-radius: 10px; 
+		font:50px HelveticaNeue, Helvetica Neue, sans-serif; 
+		font-weight:bold; 
+		color:#ff0000; 
+		background:#363636; 
+		-webkit-box-shadow:0px 0px 0px #ffffff, inset 0px 0px 0px #ffffff; 
+		-moz-box-shadow: 0px 0px 0px #ffffff,  inset 0px 0px 0px #ffffff;  
+		box-shadow:0px 0px 0px #ffffff, inset 0px 0px 0px #ffffff;  
+		-webkit-transition: background 0.15s ease-in;
+		-moz-transition:  background 0.15s ease-in;
+		-o-transition:  background 0.15s ease-in;
+		transition:  background 0.15s ease-in;
+		}
+		#arm:active {
+		height: 130px;
+		width: 280px;
+		padding:0px 0px; 
+		border:solid 2px #ff0000; 
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px; 
+		border-radius: 10px; 
+		font:50px HelveticaNeue, Helvetica Neue, sans-serif; 
+		font-weight:bold; 
+		color:#ffffff; 
+		background:#ff0000; 
+		-webkit-box-shadow:0px 0px 0px #ffffff, inset 0px 0px 0px #ffffff; 
+		-moz-box-shadow: 0px 0px 0px #ffffff,  inset 0px 0px 0px #ffffff;  
+		box-shadow:0px 0px 0px #ffffff, inset 0px 0px 0px #ffffff;  
+		}
+		 
+		#disarm {
+		height: 130px;
+		width: 280px;
+		text-decoration:none; text-align:center; 
+		padding:0px 0px;
+		border:solid 2px #00b825; 
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px; 
+		border-radius: 10px; 
+		font:50px Helvetica, sans-serif; 
+		font-weight:bold; 
+		color:#00b825; 
+		background:#363636; 
+		-webkit-box-shadow:0px 0px 0px #ffffff, inset 0px 0px 0px #ffffff; 
+		-moz-box-shadow: 0px 0px 0px #ffffff,  inset 0px 0px 0px #ffffff;  
+		box-shadow:0px 0px 0px #ffffff, inset 0px 0px 0px #ffffff;  
+		-webkit-transition: background 0.15s ease-in;
+		-moz-transition:  background 0.15s ease-in;
+		-o-transition:  background 0.15s ease-in;
+		transition:  background 0.15s ease-in;
+		}
+		#disarm:active {
+		height: 130px;
+		width: 280px;
+		padding:0px 0px;
+		border:solid 2px #00b825; 
+		-webkit-border-radius:10px;
+		-moz-border-radius:10px; 
+		border-radius: 10px; 
+		font:50px Helvetica, sans-serif; 
+		font-weight:bold; 
+		color:#ffffff; 
+		background:#00b825; 
+		-webkit-box-shadow:0px 0px 0px #ffffff, inset 0px 0px 0px #ffffff; 
+		-moz-box-shadow: 0px 0px 0px #ffffff,  inset 0px 0px 0px #ffffff;  
+		box-shadow:0px 0px 0px #ffffff, inset 0px 0px 0px #ffffff;  
+		} 
+		 
+		#livevideo {
+		position:fixed;
+		top:0px;
+		left:0px;
+		}
+	</style>-->
+	
+</head>
+
+<body> 
+	<!-- Video -->	
+    <!--Make sure img src is set to correct IP addres, port, and username and password-->
+	<div id="livevideo"><img src="http://10.10.10.1:1234/videostream.cgi?user=UserName&pwd=Password&resolution=8&rate=0">
+		<!-- Buttons -->
+		<p></p>
+		<div id="buttonArm" align="center"></div>
+		<p></p>
+		<div id="buttonDisarm" align="center"></div>
+	</div>	
+</body>
+</html>
